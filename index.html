@@ -17,6 +17,7 @@
  .container-lg {
 
   border: thin #00c851 solid;
+  box-shadow: #00c851 1px 1px 5px 1px;
   margin-top: 50px;
   background-color: white;
  
@@ -25,20 +26,36 @@
  .jumbotron {
   margin-top: 32px;
   border: thin #00c851 solid;
+  box-shadow: #00c851 1px 1px 5px 1px;
   /* background-color: white; */
   background-image: url("./assets/images/cubes.png");
  }
 
 .jumbotron img {
+         float: left;
          width: 250px;
          height: 250px;
          border-radius: 50%;
          object-fit: cover;
          margin-top: -80px;
-         border: 6px solid black;
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
+         border: 4px solid black;
+         box-shadow: rgba(0, 0, 0, .5) 5px 1px 20px 4px;
          /* text-align: center; */
          }
+
+.card {
+margin: 15px;
+
+}
+
+#mainHi {
+  margin-left: 50px;
+  float: right;
+}
+
+.card-title {
+text-align: center;
+}         
   
 </style>
 
@@ -47,10 +64,40 @@
   <div class="container-lg col-md-8 offset-md-2">
   <div class="jumbotron col-md-10 offset-md-1">
     <img src="https://avatars3.githubusercontent.com/u/12255593?v=4">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-4">
     
+    <h1 id mainHi class="display-4 col-md-10 offset-md-4">Hi!</h1>
+    <h1 class="display-4 col-md-10 offset-md-4">My Name is Nathan HUber</h1>
+    <br>
+    <br>
+
+    <p class="lead">Currently</p>
+    <p class="lead">Location, GitHub, Blog</p>
+    <hr class="my-4">
+
+    <div class="row justify-content-lg-center ">
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-title ">
+        <h5>Public Repositories</h5>
+      </div>
+    </div>
+    <div class="card card-title" style="width: 18rem;">
+      <div class="card-title card-body">
+        <h5>Followers</h5>
+      </div>
+    </div>
+    <div class="card card-title" style="width: 18rem;">
+      <div class="card-title card-body">
+        <h5>GitHub Stars</h5>
+      </div>
+    </div>
+    <div class="card card-title" style="width: 18rem;">
+      <div class="card-title card-body">
+       <h5>Following</h5>
+       <h5>3</h5>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 
