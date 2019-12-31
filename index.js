@@ -29,7 +29,24 @@ promptUser()
   // const queryUrl = `https://api.github.com/users/${answers.github}/starred`;
   // const queryUrl = `https://api.github.com/users/${answers.github}/starred{${answers.github}`;
 
-  
+  const htmlColors = {
+    Green: {
+      backGround: "#bae0b8", 
+      borderColor: "#00c851",
+    },
+    Black: {
+      backGround: "#bfbfbf",
+      borderColor: "black",
+    },
+    Blue: {
+      backGround: "#9999ff",
+      borderColor: "#0000ff",
+    },
+    Purple: {
+      backGround: "#b65dc4",
+      borderColor: "#e600e6",
+    },
+  };
 
 
 
@@ -46,9 +63,15 @@ promptUser()
     console.log(res.data.avatar_url);    
     console.log(res.data.html_url);
     console.log(answers.color);
+    console.log(htmlColors);
+    
     // console.log(html);
 
+  
+
     function generateHTML() {
+      console.log()
+      console.log(htmlColors);
       return `
       <!DOCTYPE html>
       <html lang="en">
@@ -68,18 +91,17 @@ promptUser()
       
        .container-lg {
       
-        border: thin #00c851 solid;
-        box-shadow: #00c851 1px 1px 5px 1px;
+        border: thin ${htmlColors[answers.color].borderColor} solid;
+        box-shadow: ${htmlColors[answers.color].borderColor} 1px 1px 5px 1px;
         margin-top: 50px;
-        background-color: white;
+        background-color: ${htmlColors[answers.color].backGround};
        
        }
       
        .jumbotron {
         margin-top: 32px;
-        border: thin #00c851 solid;
-        box-shadow: #00c851 1px 1px 5px 1px;
-        /* background-color: white; */
+        border: thin ${htmlColors[answers.color].borderColor} solid;
+        box-shadow: ${htmlColors[answers.color].borderColor} 1px 1px 5px 1px;
         background-image: url("./assets/images/cubes.png");
        }
       
@@ -108,6 +130,9 @@ promptUser()
       
       .card {
       margin: 15px;
+      border: thin ${htmlColors[answers.color].borderColor} solid;
+      box-shadow: ${htmlColors[answers.color].borderColor} 1px 1px 5px 1px;
+      background-color: ${htmlColors[answers.color].backGround};
       
       }
       
@@ -130,7 +155,7 @@ promptUser()
       <body>
        
         <div class="container-lg col-md-8 offset-md-2">
-        <div class="jumbotron col-md-10 offset-md-1">
+        <div class="jumbotron col-md-12 offset-md-0">
           <img src="${[res.data.avatar_url]}">
           
           <h1 id mainHi class="display-4 col-md-10 offset-md-4">Hi!</h1>
