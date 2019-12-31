@@ -21,57 +21,182 @@ function promptUser() {
   ]);
 }
 
-
-
-function generateHTML(answers) {
-  return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">My GitHub Username is ${answers.github}</h1>
-    <p class="lead">I am from ${answers.location}.</p>
-    <h3>Want to meet me? <span class="badge badge-success">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.github}</li>
-      <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
-    </ul>
-  </div>
-</div>
-</body>
-</html>`;
-}
-
 promptUser()
 
 .then(function(answers) {
-  const html = generateHTML(answers);
-  // const queryUrl = `https://api.github.com/users/${answers.github}`;
+
+  const queryUrl = `https://api.github.com/users/${answers.github}`;
   // const queryUrl = `https://api.github.com/users/${answers.github}/starred`;
-  const queryUrl = `https://api.github.com/users/${answers.github}/starred{${answers.github}`;
+  // const queryUrl = `https://api.github.com/users/${answers.github}/starred{${answers.github}`;
 
   
+
+
+
+
+
+
   
 
 
-  axios
-  .get(queryUrl)
+  axios.get(queryUrl)
   .then(function(res) {
     console.log(res.data);
+    console.log(res.data.name);
+    console.log(res.data.avatar_url);    
+    console.log(res.data.html_url);
+    console.log(answers.color);
+    // console.log(html);
 
-    console.log()
+    function generateHTML() {
+      return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
+        <title>${[res.data.name]}</title>
+      </head>
+      
+      <style type="text/css">
+      
+       body {
+        background-image: url("./assets/images/cubes.png");
+       }
+      
+       .container-lg {
+      
+        border: thin #00c851 solid;
+        box-shadow: #00c851 1px 1px 5px 1px;
+        margin-top: 50px;
+        background-color: white;
+       
+       }
+      
+       .jumbotron {
+        margin-top: 32px;
+        border: thin #00c851 solid;
+        box-shadow: #00c851 1px 1px 5px 1px;
+        /* background-color: white; */
+        background-image: url("./assets/images/cubes.png");
+       }
+      
+      .jumbotron img {
+               float: left;
+               width: 250px;
+               height: 250px;
+               border-radius: 50%;
+               object-fit: cover;
+               margin-top: -80px;
+               border: 4px solid black;
+               box-shadow: rgba(0, 0, 0, .5) 5px 1px 20px 4px;
+               /* text-align: center; */
+               }
 
+      .container {
+        width: 100%;
+         text-align: left;
+         padding: 20px 0 0 0;
+      }
+
+      .link {
+        display: inline-block;
+         margin: 5px 10px 0px 10px;
+      }
+      
+      .card {
+      margin: 15px;
+      
+      }
+      
+      #mainHi {
+        margin-left: 50px;
+        float: right;
+      }
+      
+      .card-title {
+      text-align: center;
+      } 
+      
+      a, a:hover {
+        text-decoration: none;
+        color: inherit;
+      }
+        
+      </style>
+      
+      <body>
+       
+        <div class="container-lg col-md-8 offset-md-2">
+        <div class="jumbotron col-md-10 offset-md-1">
+          <img src="${[res.data.avatar_url]}">
+          
+          <h1 id mainHi class="display-4 col-md-10 offset-md-4">Hi!</h1>
+          <h1 class="display-4 col-md-10 offset-md-4">My Name is ${[res.data.name]}!</h1>
+          <br>
+          <br>      
+          <p class="lead">Currently @ ${[res.data.company]} </p>
+          <p class="lead">${[res.data.bio]} </p>
+
+          <div class = "container">
+            <div class = "link">
+              <p class = "lead"><a href = "https://www.google.com/maps/place/${[res.data.location]}" title = "https://www.google.com/maps/place/${[res.data.location]}"><i class="fas fa-map-pin"></i> ${[res.data.location]}</a></p>
+            </div>
+            <div class = "link">
+            <p class = "lead"><a href = "${[res.data.html_url]}" title = "${[res.data.html_url]}"><i class="fab fa-github-square"></i> GitHub</a></p>
+            </div>
+            <div class = "link">
+            <p class = "lead"><a href = "${[res.data.blog]}" title = "${[res.data.blog]}"><i class="fas fa-rss-square"></i> Blog</a></p>
+            </div>
+          </div>
+
+          
+          <hr class="my-4">
+      
+          <div class="row justify-content-lg-center ">
+      
+          <div class="card card-title" style="width: 20rem;">
+            <div class="card-title card-body ">
+              <h5>Public Repositories</h5>
+              <h5>${[res.data.public_repos]}</h5>
+            </div>
+          </div>
+          <div class="card card-title" style="width: 20rem;">
+            <div class="card-title card-body">
+              <h5>Followers</h5>
+              <h5>${[res.data.followers]}</h5>
+            </div>
+          </div>
+          <div class="card card-title" style="width: 20rem;">
+            <div class="card-title card-body">
+              <h5>GitHub Stars</h5>
+              <h5>${[res.data.followers]}</h5>
+            </div>
+          </div>
+          <div class="card card-title" style="width: 20rem;">
+            <div class="card-title card-body">
+             <h5>Following</h5>
+             <h5>${[res.data.following]}</h5>
+             <h5></h5>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      </body>
+      </html>`;
+    }
+
+    const html = generateHTML();  
   return writeFileAsync("result.html", html);
 })
 .then(function() {
   console.log("Successfully wrote to result.html");
+
 })
 .catch(function(err) {
   console.log(err);
