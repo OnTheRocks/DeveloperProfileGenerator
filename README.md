@@ -1,4 +1,4 @@
-DeveloperProfileGenerator
+# DeveloperProfileGenerator
 Profile Generator: Enter a github username and choose a color to generate a colorful developer profile in pdf format. 
 
 The link to this GitHub repo:
