@@ -1,7 +1,6 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-const util = require("util");
 const pdf = require('html-pdf');
 
 // -------------- Prompting user for Github username and a color ---------------
@@ -55,8 +54,6 @@ promptUser()
   // -------------------- Generating result.html -------------------------
     
     function generateHTML() {
-      console.log(res.data.location)
-
       return `
       <!DOCTYPE html>
       <html lang="en">
@@ -155,13 +152,13 @@ promptUser()
           <p class="lead">${[res.data.bio]} </p>
           <div class = "container">
             <div class = "link">
-              <p class = "lead"><a href = "https://www.google.com/maps/place/${[res.data.location]}" title = "https://www.google.com/maps/place/${[res.data.location]}"><i class="fas fa-map-pin"></i> ${[res.data.location]}</a></p>
+              <p class = "lead"><a href = "https://www.google.com/maps/place/${[res.data.location]}" target="blank" title = "https://www.google.com/maps/place/${[res.data.location]}"><i class="fas fa-map-pin"></i> ${[res.data.location]}</a></p>
             </div>
             <div class = "link">
-              <p class = "lead"><a href = "${[res.data.html_url]}" title = "${[res.data.html_url]}"><i class="fab fa-github-square"></i> GitHub</a></p>
+              <p class = "lead"><a href = "${[res.data.html_url]}" target="blank" title = "${[res.data.html_url]}"><i class="fab fa-github-square"></i> GitHub</a></p>
             </div>
             <div class = "link">
-              <p class = "lead"><a href = "${[res.data.blog]}" title = "${[res.data.blog]}"><i class="fas fa-rss-square"></i> Blog</a></p>
+              <p class = "lead"><a href = "${[res.data.blog]}" target="blank" title = "${[res.data.blog]}"><i class="fas fa-rss-square"></i> Blog</a></p>
             </div>
           </div>          
         <hr class="my-4">      
