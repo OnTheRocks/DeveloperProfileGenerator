@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/OnTheRocks/DeveloperProfileGenerator#readme",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "html-pdf": "^3.0.1",
     "inquirer": "^7.0.1"
   }
